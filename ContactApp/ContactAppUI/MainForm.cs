@@ -42,5 +42,22 @@ namespace ContactAppUI
 
             MessageBox.Show("Контакт сохранен");
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutForm form = new AboutForm();
+            form.Show();
+        }
+
+        private void addContactToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ModifyContactForm form = new ModifyContactForm();
+            form.Show();
+        }
     }
 }

@@ -18,7 +18,8 @@ namespace ContactsApp
         /// Путь до папки сохранения "ContactsApp".
         /// </summary>
 
-        public static string PathToFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Contact/";
+        public static string PathToFolder = "C:\\Users\\mapki\\OneDrive\\Рабочий стол\\Contact";
+       // public static string PathToFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Contact/";
         /// <summary>
         /// Полный путь до файла "ContactsApp.notes".
         /// </summary>
