@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace ContactsApp
+namespace ContactApp
 {
     /// <summary>
     /// Класс менеджера проекта
@@ -17,47 +17,62 @@ namespace ContactsApp
         /// <summary>
         /// Путь до папки сохранения "ContactsApp".
         /// </summary>
-
-        public static string PathToFolder = "C:\\Users\\mapki\\OneDrive\\Рабочий стол\\Contact";
-       // public static string PathToFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Contact/";
+        
+        public static string PathToFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Contact\\";
         /// <summary>
         /// Полный путь до файла "ContactsApp.notes".
         /// </summary>
 
-        private static string PathToFile = PathToFolder+"/ContactsApp.notes";
-
+        public static string PathToFile = PathToFolder+"\\ContactsApp.notes";
         /// <summary>
-        /// Метод сохранения данных путем сериализации.
+        /// Метод сохранения данных в файл.
         /// </summary>
-        /// <param name="project">Данные для сериализации.</param>
-        /// <param name="filepath">Путь до файла</param>
-        public static void SaveToFile(Project project, string filepath)
+        /// <param name="data">Данные для сериализации.</param>
+        /// <param name="filePath">Путь до файла.</param>
+        /// <param name="directoryPath">Путь до папки.</param>
+        /// <summary>
+        /// Метод сериализации данных проекта.
+        /// </summary>
+        public static void SaveToFile(Project project, string path)
         {
-            Directory.CreateDirectory(filepath);
+            Directory.CreateDirectory(path);
+
+            path += "\\ContactsApp.notes";
+
             JsonSerializer serializer = new JsonSerializer();
-            using (StreamWriter sw = new StreamWriter(PathToFile))
-            using (JsonWriter writer = new JsonTextWriter(sw))
+
+            using (StreamWriter sw = new StreamWriter(path))
+            using (JsonTextWriter writer = new JsonTextWriter(sw))
             {
                 serializer.Serialize(writer, project);
             }
         }
 
         /// <summary>
-        /// Метод загрузки данных путем десериализации.
+        /// Метод десериализации данных проекта.
         /// </summary>
-        public static Project LoadFromFile(string filepath)
+        public static Project LoadFromFile(string path)
         {
+            path += "\\ContactsApp.notes";
             Project project;
             JsonSerializer serializer = new JsonSerializer();
+
             try
             {
-                using (StreamReader sr = new StreamReader(filepath))
-                using (JsonReader reader = new JsonTextReader(sr))
+                using (StreamReader sr = new StreamReader(path))
+                using (JsonTextReader reader = new JsonTextReader(sr))
                     project = serializer.Deserialize<Project>(reader);
+
+                if (project == null)
+                {
+                    project = new Project();
+                    return project;
+                }
             }
             catch
             {
-                return new Project();
+                project = new Project();
+                return project;
             }
             return project;
         }

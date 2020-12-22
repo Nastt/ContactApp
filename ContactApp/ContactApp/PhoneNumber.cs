@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ContactsApp
+namespace ContactApp
 {
     /// <summary>
     /// Класс номера телефона
@@ -34,7 +34,7 @@ namespace ContactsApp
                 }
                 else
                 {
-                    throw new ArgumentException(message: "Номер телефона должнен начинаться с 7 и содержать 11 цифр");
+                    throw new ArgumentException(message: "Phone number should begin with 7 and contain 11 digits");
                 }
             }
         }

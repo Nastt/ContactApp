@@ -26,5 +26,10 @@ namespace ContactAppUI
         {
             System.Diagnostics.Process.Start("https://github.com/Nastt/ContactApp.git");
         }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

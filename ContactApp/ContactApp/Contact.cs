@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ContactsApp
+namespace ContactApp
 {
     /// <summary>
     /// Класс контакта
     /// </summary>
     public class Contact : ICloneable
     {
+        
         /// <summary>
         /// Фамилия контакта
         /// </summary>
@@ -39,7 +40,7 @@ namespace ContactsApp
         /// <summary>
         /// Номер телефона контакта
         /// </summary>
-        public PhoneNumber PhoneNumber { get; set; }
+        public PhoneNumber PhoneNumber { get; set; } = new PhoneNumber();
 
         /// <summary>
         /// Свойство фамилии
@@ -59,7 +60,12 @@ namespace ContactsApp
                 }
                 else
                 {
-                    throw new ArgumentException("Фамилия не должна превышать 50 символов");
+                    throw new ArgumentException("Surname cannot be longer than 50 digits");
+                }
+
+                if (value.Length == 0)
+                {
+                    throw new ArgumentException("Surname isn't written");
                 }
             }
         }
@@ -82,7 +88,11 @@ namespace ContactsApp
                 }
                 else
                 {
-                    throw new ArgumentException("Имя не должно превышать 50 символов");
+                    throw new ArgumentException("Name cannot be longer than 50 digits");
+                }
+                if (value.Length == 0)
+                {
+                    throw new ArgumentException("Name isn't written");
                 }
             }
         }
@@ -105,14 +115,14 @@ namespace ContactsApp
                 }
                 else
                 {
-                    throw new ArgumentException("Е-mail не должен превышать 50 символов");
+                    throw new ArgumentException("Е-mail cannot be longer than 50 digits");
                 }
             }
         }
 
         /// <summary>
         /// Свойство ID Вконтакте
-        /// ID Вконтакте не должно превышать 15 символов и должно начинаться с символа _
+        /// ID Вконтакте не должно превышать 15 символов
         /// </summary>
         public string IdVk
         {
@@ -122,13 +132,13 @@ namespace ContactsApp
             }
             set
             {
-                if ((value.Length < 15) && (value[0] == '_'))
+                if ((value.Length < 15))
                 {
                     _idVk = value;
                 }
                 else
                 {
-                    throw new ArgumentException("ID_vk не должен превышать 15 символов и начинаться с символа _");
+                    throw new ArgumentException("ID_vk cannot be longer than 15 digits");
                 }
             }
         }
@@ -152,7 +162,7 @@ namespace ContactsApp
                 }
                 else
                 {
-                    throw new ArgumentException("Дата рождения не может быть больше текущей даты или быть менее 1900 года");
+                    throw new ArgumentException("Date of birth cannot exceed the current date or subceed the year 1900");
                 }
             }
         }
@@ -163,7 +173,7 @@ namespace ContactsApp
         /// <returns>Возвращает копию данного класса.</returns>
         public object Clone()
         {
-            var phoneNumber = new PhoneNumber { Number = this.PhoneNumber.Number };
+            PhoneNumber phoneNumber = new PhoneNumber { Number = this.PhoneNumber.Number };
             return new Contact
             {
                 Surname = this.Surname,
