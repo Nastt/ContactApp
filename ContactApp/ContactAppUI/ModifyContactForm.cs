@@ -16,17 +16,17 @@ namespace ContactAppUI
         public ModifyContactForm()
         {
             InitializeComponent();
-            BirthdayTimePicker.MaxDate = DateTime.Today;
+            BirthdayTimePicker.MaxDate = DateTime.Now;
         }
 
         private Contact _contact = new Contact();
-      
+
         public Contact Contact
         {
-            get 
+            get
             {
                 return _contact;
-            } 
+            }
             set
             {
                 _contact = (Contact)value.Clone();
@@ -81,6 +81,7 @@ namespace ContactAppUI
                 }
             }
         }
+
         private void vkBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(Char.IsDigit(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Delete) && (!(Char.IsLetter(e.KeyChar))))
@@ -120,6 +121,7 @@ namespace ContactAppUI
                 NameBox.BackColor = Color.White;
             }
         }
+
         private void PhoneBox_TextChanged(object sender, EventArgs e)
         {
             if (PhoneBox.Text.Length > 0)
@@ -133,11 +135,10 @@ namespace ContactAppUI
                     PhoneBox.BackColor = Color.White;
                 }
             }
-            else 
+            else
             {
                 PhoneBox.BackColor = Color.White;
             }
-            
         }
 
         private void EmailBox_TextChanged(object sender, EventArgs e)
@@ -169,7 +170,8 @@ namespace ContactAppUI
             vkBox.Text = "id";
             vkBox.SelectionStart = vkBox.Text.Length;
         }
-       private void PhoneBox_MouseDown(object sender, MouseEventArgs e)
+
+        private void PhoneBox_MouseDown(object sender, MouseEventArgs e)
         {
             PhoneBox.Text = "7";
             PhoneBox.SelectionStart = PhoneBox.Text.Length;

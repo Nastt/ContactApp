@@ -53,7 +53,7 @@ namespace ContactAppUI
         /// <summary>
         /// Метод добавления контакта
         /// </summary>
-        private void AddContact()
+        private void ModifyContact()
         {
             var form = new ModifyContactForm();
             var dialogResult = form.ShowDialog();
@@ -65,9 +65,8 @@ namespace ContactAppUI
                 ProjectManager.SaveToFile(_project, ProjectManager.PathToFolder);
                 ContactlistBox.SetSelected(ContactlistBox.Items.IndexOf(Contact.Surname), true);
             }
+        }
 
-        } 
-        
         /// <summary>
         /// Метод изменения контакта
         /// </summary>
@@ -86,7 +85,6 @@ namespace ContactAppUI
                 var dialogResult = form.ShowDialog();
                 if (dialogResult == DialogResult.OK)
                 {
-
                     var updatedContact = form.Contact;
                     _project.Contacts.RemoveAt(selectedIndex);
                     ContactlistBox.Items.RemoveAt(selectedIndex);
@@ -97,6 +95,7 @@ namespace ContactAppUI
                 ContactlistBox.SetSelected(selectedIndex, true);
             }
         }
+
         /// <summary>
         /// Метод удаления контакта
         /// </summary>
@@ -111,7 +110,7 @@ namespace ContactAppUI
             {
                 Contact contact = _project.Contacts[selectedIndex];
                 SurnameBox.Text = contact.Surname;
-                var dialogResult = MessageBox.Show("Do you really want to remove contact " + contact.Surname + "?", "Confirmation", MessageBoxButtons.OKCancel);
+                var dialogResult = MessageBox.Show($"Do you really want to remove contact {contact.Surname}?", "Confirmation", MessageBoxButtons.OKCancel);
                 if (dialogResult == DialogResult.OK)
                 {
                     _project.Contacts.RemoveAt(selectedIndex);
@@ -129,7 +128,7 @@ namespace ContactAppUI
 
         private void addContactToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddContact();
+            ModifyContact();
         }
 
         private void editContactToolStripMenuItem_Click(object sender, EventArgs e)
@@ -149,7 +148,7 @@ namespace ContactAppUI
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            AddContact();
+            ModifyContact();
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
@@ -161,15 +160,6 @@ namespace ContactAppUI
         {
             EditContact();
         }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
+
