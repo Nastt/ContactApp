@@ -18,7 +18,7 @@ namespace ContactAppUI
         {
             InitializeComponent();
 
-            _project = ProjectManager.LoadFromFile(ProjectManager.PathToFolder);
+            _project = ProjectManager.LoadFromFile(ProjectManager.PathToFile);
 
             foreach (var contact in _project.Contacts)
             {
@@ -32,38 +32,48 @@ namespace ContactAppUI
             if (selectedIndex >= 0)
             {
                 Contact contact = _project.Contacts[selectedIndex];
-                SurnameBox.Text = contact.Surname;
-                NameBox.Text = contact.Name;
-                BirthdayTimePicker.Value = contact.Birthday;
-                PhoneMaskBox.Text = contact.PhoneNumber.Number.ToString();
-                EmailBox.Text = contact.Email;
-                vkBox.Text = contact.IdVk;
+                UpdateContact(contact);
             }
             else
             {
-                SurnameBox.Text = "";
-                NameBox.Text = "";
-                BirthdayTimePicker.Value = DateTime.Today;
-                PhoneMaskBox.Text = "";
-                EmailBox.Text = "";
-                vkBox.Text = "";
+                ClearContact();
             }
+        }
+
+        private void UpdateContact(Contact contact) 
+        {
+            SurnameBox.Text = contact.Surname;
+            NameBox.Text = contact.Name;
+            BirthdayTimePicker.Value = contact.Birthday;
+            PhoneMaskBox.Text = contact.PhoneNumber.Number.ToString();
+            EmailBox.Text = contact.Email;
+            vkBox.Text = contact.IdVk;
+        }
+
+        private void ClearContact() 
+        {
+            SurnameBox.Text = "";
+            NameBox.Text = "";
+            BirthdayTimePicker.Value = DateTime.Now;
+            PhoneMaskBox.Text = "";
+            EmailBox.Text = "";
+            vkBox.Text = "";
         }
 
         /// <summary>
         /// Метод добавления контакта
         /// </summary>
-        private void ModifyContact()
+        private void AddContact()
         {
-            var form = new ModifyContactForm();
+            var form = new ContactForm();
             var dialogResult = form.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
                 var Contact = form.Contact;
                 _project.Contacts.Add(Contact);
                 ContactlistBox.Items.Add(Contact.Surname);
-                ProjectManager.SaveToFile(_project, ProjectManager.PathToFolder);
-                ContactlistBox.SetSelected(ContactlistBox.Items.IndexOf(Contact.Surname), true);
+                ProjectManager.SaveToFile(_project, ProjectManager.PathToFolder, ProjectManager.PathToFile);
+                ContactlistBox.SetSelected(ContactlistBox.Items.Count - 1, true);
             }
         }
 
@@ -80,7 +90,7 @@ namespace ContactAppUI
             else
             {
                 var selectedContact = _project.Contacts[selectedIndex];
-                var form = new ModifyContactForm();
+                var form = new ContactForm();
                 form.Contact = selectedContact;
                 var dialogResult = form.ShowDialog();
                 if (dialogResult == DialogResult.OK)
@@ -90,7 +100,7 @@ namespace ContactAppUI
                     ContactlistBox.Items.RemoveAt(selectedIndex);
                     _project.Contacts.Insert(selectedIndex, updatedContact);
                     ContactlistBox.Items.Insert(selectedIndex, updatedContact.Surname);
-                    ProjectManager.SaveToFile(_project, ProjectManager.PathToFolder);
+                    ProjectManager.SaveToFile(_project, ProjectManager.PathToFolder, ProjectManager.PathToFile);
                 }
                 ContactlistBox.SetSelected(selectedIndex, true);
             }
@@ -110,12 +120,15 @@ namespace ContactAppUI
             {
                 Contact contact = _project.Contacts[selectedIndex];
                 SurnameBox.Text = contact.Surname;
-                var dialogResult = MessageBox.Show($"Do you really want to remove contact {contact.Surname}?", "Confirmation", MessageBoxButtons.OKCancel);
+                var dialogResult = MessageBox.Show(
+                    $"Do you really want to remove contact {contact.Surname}?", 
+                    "Confirmation", MessageBoxButtons.OKCancel);
+
                 if (dialogResult == DialogResult.OK)
                 {
                     _project.Contacts.RemoveAt(selectedIndex);
                     ContactlistBox.Items.RemoveAt(selectedIndex);
-                    ProjectManager.SaveToFile(_project, ProjectManager.PathToFolder);
+                    ProjectManager.SaveToFile(_project, ProjectManager.PathToFolder, ProjectManager.PathToFile);
                 }
             }
         }
@@ -128,7 +141,7 @@ namespace ContactAppUI
 
         private void addContactToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ModifyContact();
+            AddContact();
         }
 
         private void editContactToolStripMenuItem_Click(object sender, EventArgs e)
@@ -148,7 +161,7 @@ namespace ContactAppUI
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            ModifyContact();
+            AddContact();
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)

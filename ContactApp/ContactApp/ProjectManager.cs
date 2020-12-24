@@ -17,8 +17,9 @@ namespace ContactApp
         /// <summary>
         /// Путь до папки сохранения "ContactsApp".
         /// </summary>
-        
+
         public static string PathToFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Contact\\";
+        
         /// <summary>
         /// Полный путь до файла "ContactsApp.notes".
         /// </summary>
@@ -33,15 +34,16 @@ namespace ContactApp
         /// <summary>
         /// Метод сериализации данных проекта.
         /// </summary>
-        public static void SaveToFile(Project project, string path)
+        public static void SaveToFile(Project project, string savefile, string folderpath)
         {
-            Directory.CreateDirectory(path);
-
-            path += "\\ContactsApp.notes";
+            if (!Directory.Exists(savefile))
+            {
+                Directory.CreateDirectory(savefile);
+            }
 
             JsonSerializer serializer = new JsonSerializer();
 
-            using (StreamWriter sw = new StreamWriter(path))
+            using (StreamWriter sw = new StreamWriter(folderpath))
             using (JsonTextWriter writer = new JsonTextWriter(sw))
             {
                 serializer.Serialize(writer, project);
@@ -53,7 +55,6 @@ namespace ContactApp
         /// </summary>
         public static Project LoadFromFile(string path)
         {
-            path += "\\ContactsApp.notes";
             Project project;
             JsonSerializer serializer = new JsonSerializer();
 
@@ -61,18 +62,13 @@ namespace ContactApp
             {
                 using (StreamReader sr = new StreamReader(path))
                 using (JsonTextReader reader = new JsonTextReader(sr))
-                    project = serializer.Deserialize<Project>(reader);
-
-                if (project == null)
-                {
-                    project = new Project();
-                    return project;
-                }
+                { 
+                    project = serializer.Deserialize<Project>(reader); 
+                }                                   
             }
             catch
             {
                 project = new Project();
-                return project;
             }
             return project;
         }

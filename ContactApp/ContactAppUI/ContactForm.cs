@@ -11,16 +11,13 @@ using ContactApp;
 
 namespace ContactAppUI
 {
-    public partial class ModifyContactForm : Form
+    public partial class ContactForm : Form
     {
-        public ModifyContactForm()
-        {
-            InitializeComponent();
-            BirthdayTimePicker.MaxDate = DateTime.Now;
-        }
-
+        /// <summary>
+        /// Времененное хранение контакта
+        /// </summary>
         private Contact _contact = new Contact();
-
+        
         public Contact Contact
         {
             get
@@ -39,6 +36,16 @@ namespace ContactAppUI
                 BirthdayTimePicker.Value = value.Birthday;
             }
         }
+
+        /// <summary>
+        /// Инициализация формы
+        /// </summary>
+        public ContactForm()
+        {
+            InitializeComponent();
+            BirthdayTimePicker.MaxDate = DateTime.Now;
+        }
+
         /// <summary>
         /// Создание контакта для добавления или редактирования
         /// </summary>
@@ -65,10 +72,14 @@ namespace ContactAppUI
             }
         }
 
-
+        /// <summary>
+        /// Ограничения на вводимые символы в поле PhoneBox
+        /// </summary>
         private void PhoneBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(Char.IsDigit(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Delete))
+            if (!(Char.IsDigit(e.KeyChar)) && 
+                (e.KeyChar != (char)Keys.Back) && 
+                (e.KeyChar != (char)Keys.Delete))
             {
                 e.Handled = true;
             }
@@ -82,9 +93,14 @@ namespace ContactAppUI
             }
         }
 
+        /// <summary>
+        /// Ограничения на вводимые символы в поле vkBox
+        /// </summary>
         private void vkBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(Char.IsDigit(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Delete) && (!(Char.IsLetter(e.KeyChar))))
+            if (!(Char.IsDigit(e.KeyChar)) && 
+                (e.KeyChar != (char)Keys.Back) && 
+                (e.KeyChar != (char)Keys.Delete) && (!(Char.IsLetter(e.KeyChar))))
             {
                 e.Handled = true;
             }
@@ -98,6 +114,24 @@ namespace ContactAppUI
             }
         }
 
+        /// <summary>
+        /// Измененние текстового поля vkBox при ошибке вводе
+        /// </summary>
+        private void vkBox_TextChanged(object sender, EventArgs e)
+        {
+            if (vkBox.Text.Length > 15)
+            {
+                vkBox.BackColor = Color.Salmon;
+            }
+            else
+            {
+                vkBox.BackColor = Color.White;
+            }
+        }
+
+        /// <summary>
+        /// Измененние текстового поля SurnameBox при ошибке вводе
+        /// </summary>
         private void SurnameBox_TextChanged(object sender, EventArgs e)
         {
             if (SurnameBox.Text.Length > 50)
@@ -110,6 +144,9 @@ namespace ContactAppUI
             }
         }
 
+        /// <summary>
+        /// Измененние текстового поля NameBox при ошибке вводе
+        /// </summary>
         private void NameBox_TextChanged(object sender, EventArgs e)
         {
             if (NameBox.Text.Length > 50)
@@ -122,11 +159,14 @@ namespace ContactAppUI
             }
         }
 
+        /// <summary>
+        /// Измененние текстового поля PhoneBox при ошибке вводе
+        /// </summary>
         private void PhoneBox_TextChanged(object sender, EventArgs e)
         {
             if (PhoneBox.Text.Length > 0)
             {
-                if ((PhoneBox.Text[0] != '7'))
+                if ((PhoneBox.Text.Length > 11))
                 {
                     PhoneBox.BackColor = Color.Salmon;
                 }
@@ -141,6 +181,9 @@ namespace ContactAppUI
             }
         }
 
+        /// <summary>
+        /// Измененние текстового поля EmailBox при ошибке вводе
+        /// </summary>
         private void EmailBox_TextChanged(object sender, EventArgs e)
         {
             if (EmailBox.Text.Length > 50)
@@ -153,27 +196,13 @@ namespace ContactAppUI
             }
         }
 
-        private void vkBox_TextChanged(object sender, EventArgs e)
-        {
-            if (vkBox.Text.Length > 15)
-            {
-                vkBox.BackColor = Color.Salmon;
-            }
-            else
-            {
-                vkBox.BackColor = Color.White;
-            }
-        }
-
         private void vkBox_MouseDown(object sender, MouseEventArgs e)
         {
-            vkBox.Text = "id";
             vkBox.SelectionStart = vkBox.Text.Length;
         }
 
         private void PhoneBox_MouseDown(object sender, MouseEventArgs e)
         {
-            PhoneBox.Text = "7";
             PhoneBox.SelectionStart = PhoneBox.Text.Length;
         }
 

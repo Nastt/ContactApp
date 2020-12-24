@@ -1,6 +1,6 @@
 ﻿namespace ContactAppUI
 {
-    partial class ModifyContactForm
+    partial class ContactForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModifyContactForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContactForm));
             this.BirthdayTimePicker = new System.Windows.Forms.DateTimePicker();
             this.vkBox = new System.Windows.Forms.TextBox();
             this.EmailBox = new System.Windows.Forms.TextBox();
@@ -48,7 +48,7 @@
             // BirthdayTimePicker
             // 
             this.BirthdayTimePicker.Location = new System.Drawing.Point(74, 64);
-            this.BirthdayTimePicker.MaxDate = new System.DateTime(2020, 12, 11, 0, 0, 0, 0);
+            this.BirthdayTimePicker.MaxDate = new System.DateTime(2020, 12, 24, 0, 0, 0, 0);
             this.BirthdayTimePicker.Name = "BirthdayTimePicker";
             this.BirthdayTimePicker.Size = new System.Drawing.Size(124, 20);
             this.BirthdayTimePicker.TabIndex = 29;
@@ -64,6 +64,7 @@
             this.vkBox.Name = "vkBox";
             this.vkBox.Size = new System.Drawing.Size(458, 20);
             this.vkBox.TabIndex = 28;
+            this.vkBox.Text = "id";
             this.vkBox.TextChanged += new System.EventHandler(this.vkBox_TextChanged);
             this.vkBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.vkBox_KeyPress);
             this.vkBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.vkBox_MouseDown);
@@ -84,11 +85,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PhoneBox.BackColor = System.Drawing.SystemColors.Window;
             this.PhoneBox.Location = new System.Drawing.Point(74, 90);
-            this.PhoneBox.MaxLength = 11;
+            this.PhoneBox.MaxLength = 30;
             this.PhoneBox.Name = "PhoneBox";
             this.PhoneBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.PhoneBox.Size = new System.Drawing.Size(458, 20);
             this.PhoneBox.TabIndex = 26;
+            this.PhoneBox.Text = "7";
             this.PhoneBox.TextChanged += new System.EventHandler(this.PhoneBox_TextChanged);
             this.PhoneBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PhoneBox_KeyPress);
             this.PhoneBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PhoneBox_MouseDown);
@@ -189,7 +191,7 @@
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // ModifyContactForm
+            // ContactForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -210,7 +212,7 @@
             this.Controls.Add(this.label2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(560, 300);
-            this.Name = "ModifyContactForm";
+            this.Name = "ContactForm";
             this.Text = "Edit/Add contact";
             this.ResumeLayout(false);
             this.PerformLayout();
