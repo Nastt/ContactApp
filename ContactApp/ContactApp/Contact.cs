@@ -65,7 +65,7 @@ namespace ContactApp
 
                 if (value.Length == 0)
                 {
-                    throw new ArgumentException("Surname isn't written");
+                    throw new IndexOutOfRangeException("Surname isn't written");
                 }
             }
         }
@@ -92,7 +92,7 @@ namespace ContactApp
                 }
                 if (value.Length == 0)
                 {
-                    throw new ArgumentException("Name isn't written");
+                    throw new IndexOutOfRangeException("Name isn't written");
                 }
             }
         }

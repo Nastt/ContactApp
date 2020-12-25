@@ -3,33 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
+using NUnit.Framework;
 
 namespace ContactApp.UnitTests
 {
-    using System.IO;
-    using System.Reflection;
-    using NUnit.Framework;
-
     [TestFixture]
     public class ProjectManagerTests
     {
+
         public Project SetUp()
         {
             var sourceProject = new Project();
+
+            var sourceNumber = 79528074444;
+            var phoneNumber = new PhoneNumber
+            {
+                Number = sourceNumber
+            };
+
             sourceProject.Contacts.Add(new Contact()
             {
                 Name = "Анастасия",
                 Surname = "Маркина",
+                Birthday = new DateTime(1999, 1, 1),
                 IdVk = "12456",
                 Email = "Anastas@mail.ru",
-
+                PhoneNumber = phoneNumber
             });
             sourceProject.Contacts.Add(new Contact()
             {
                 Name = "Полина",
                 Surname = "Пилипенко",
+                Birthday = new DateTime(2010, 5, 1),
                 IdVk = "12457",
                 Email = "Polya@mail.ru",
+                PhoneNumber = phoneNumber
             });
 
             return sourceProject;
@@ -58,9 +68,7 @@ namespace ContactApp.UnitTests
         public void SaveToFile_CorrectProject_FileSavedCorrectly()
         {
             //Setup
-            var sourceProject = new Project();
-            sourceProject = SetUp();
-
+            var sourceProject = SetUp();
             var testDataFolder = TestDataFolder();
             var actualFileName = ActualFileName();
             var expectedFileName = ExpectedFilename();
@@ -72,6 +80,9 @@ namespace ContactApp.UnitTests
 
             //Act
             ProjectManager.SaveToFile(sourceProject, testDataFolder, actualFileName);
+            
+            var isFileExist = File.Exists(actualFileName);
+            NUnit.Framework.Assert.AreEqual(true, isFileExist);
 
             //Assert
             var actualFileContent = File.ReadAllText(actualFileName);
@@ -106,15 +117,13 @@ namespace ContactApp.UnitTests
             //Setup
             var expectedProject = SetUp();
             var expectedFilename = ExpectedFilename();
-            var actualFileName = ActualFileName();
 
             //Act
             var actualProject = ProjectManager.LoadFromFile(expectedFilename);
 
             //Assert
-            var actualFileContent = File.ReadAllText(actualFileName);
-            var expectedFileContent = File.ReadAllText(expectedFilename);
-            NUnit.Framework.Assert.AreEqual(expectedFileContent, actualFileContent);
+            Assert(expectedProject.Contacts[0], actualProject.Contacts[0]);
+            Assert(expectedProject.Contacts[1], actualProject.Contacts[1]);
         }
 
         [Test]
@@ -128,7 +137,16 @@ namespace ContactApp.UnitTests
             var actualProject = ProjectManager.LoadFromFile(actualFileName);
 
             //Assert
-            Assert.IsEmpty(actualProject.Contacts);
+            NUnit.Framework.Assert.IsEmpty(actualProject.Contacts);
+        }
+        public static void Assert(Contact contact1, Contact contact2)
+        {
+            NUnit.Framework.Assert.AreEqual(contact1.Name, contact2.Name);
+            NUnit.Framework.Assert.AreEqual(contact1.Surname, contact2.Surname);
+            NUnit.Framework.Assert.AreEqual(contact1.PhoneNumber.Number, contact2.PhoneNumber.Number);
+            NUnit.Framework.Assert.AreEqual(contact1.Email, contact2.Email);
+            NUnit.Framework.Assert.AreEqual(contact1.Birthday, contact2.Birthday);
+            NUnit.Framework.Assert.AreEqual(contact1.IdVk, contact2.IdVk);
         }
     }
 }
