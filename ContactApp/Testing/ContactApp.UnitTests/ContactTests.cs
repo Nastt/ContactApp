@@ -41,14 +41,14 @@ namespace ContactApp.UnitTests
         }
 
         [Test]
-        public void Name_EnprtyName_DefaultName()
+        public void Name_EmprtyName_DefaultName()
         {
             //Setup
             var contact = new Contact();
             var sourceName = "";
 
             //Assert
-            NUnit.Framework.Assert.Throws<IndexOutOfRangeException>
+            NUnit.Framework.Assert.Throws<ArgumentException>
                 (
                 () =>
                 {
@@ -111,14 +111,14 @@ namespace ContactApp.UnitTests
         }
 
         [Test]
-        public void Surname_EnprtyName_DefaultSurname()
+        public void Surname_EmprtyName_DefaultSurname()
         {
             //Setup
             var contact = new Contact();
             var sourceSurname = "";
 
             //Assert
-            NUnit.Framework.Assert.Throws<IndexOutOfRangeException>
+            NUnit.Framework.Assert.Throws<ArgumentException>
                 (
                 () =>
                 {

@@ -54,6 +54,11 @@ namespace ContactApp
             }
             set
             {
+                if (value.Length == 0)
+                {
+                    throw new ArgumentException("Surname isn't written");
+                } 
+
                 if (value.Length < 50)
                 {
                     _surname = char.ToUpper(value[0]).ToString() + value.Substring(1);
@@ -62,11 +67,7 @@ namespace ContactApp
                 {
                     throw new ArgumentException("Surname cannot be longer than 50 digits");
                 }
-
-                if (value.Length == 0)
-                {
-                    throw new IndexOutOfRangeException("Surname isn't written");
-                }
+                
             }
         }
 
@@ -82,6 +83,11 @@ namespace ContactApp
             }
             set
             {
+                if (value.Length == 0)
+                {
+                    throw new ArgumentException("Name isn't written");
+                }
+
                 if (value.Length < 50)
                 {
                     _name = char.ToUpper(value[0]).ToString() + value.Substring(1);
@@ -89,11 +95,7 @@ namespace ContactApp
                 else
                 {
                     throw new ArgumentException("Name cannot be longer than 50 digits");
-                }
-                if (value.Length == 0)
-                {
-                    throw new IndexOutOfRangeException("Name isn't written");
-                }
+                }                
             }
         }
 
