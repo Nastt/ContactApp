@@ -24,10 +24,30 @@ namespace ContactApp.UnitTests
         }
 
         [Test]
+        public void PhoneNumber_TooLongPhoneNumber_ThrowsException()
+        {
+            //Setup
+            var sourceNumber = 723456789123456789;
+
+            //Assert
+            NUnit.Framework.Assert.Throws<ArgumentException>
+            (
+                () =>
+
+                {
+                    //Act
+                    var phoneNumber = new PhoneNumber
+                    {
+                        Number = sourceNumber
+                    };
+                }
+            );
+        }
+
         public void PhoneNumber_InсorrectPhoneNumber_ThrowsException()
         {
             //Setup
-            var sourceNumber = 123456789123456789;
+            var sourceNumber = 12346564789;
 
             //Assert
             NUnit.Framework.Assert.Throws<ArgumentException>

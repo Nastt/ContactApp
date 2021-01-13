@@ -39,7 +39,7 @@ namespace ContactApp.UnitTests
         }
 
         [Test]
-        public void Name_EmprtyName_ThrowsException()
+        public void Name_EmptyName_ThrowsException()
         {
             //Setup
             var contact = new Contact();
@@ -275,17 +275,7 @@ namespace ContactApp.UnitTests
             var actualContact = expectedContact.Clone() as Contact;
 
             //Assert
-            Assert(expectedContact, actualContact);
-        }
-
-        public static void Assert(Contact contact1, Contact contact2)
-        {
-            NUnit.Framework.Assert.AreEqual(contact1.Name, contact2.Name);
-            NUnit.Framework.Assert.AreEqual(contact1.Surname, contact2.Surname);
-            NUnit.Framework.Assert.AreEqual(contact1.PhoneNumber.Number, contact2.PhoneNumber.Number);
-            NUnit.Framework.Assert.AreEqual(contact1.Email, contact2.Email);
-            NUnit.Framework.Assert.AreEqual(contact1.Birthday, contact2.Birthday);
-            NUnit.Framework.Assert.AreEqual(contact1.IdVk, contact2.IdVk);
+            ProjectManagerTests.Assert(expectedContact, actualContact);
         }
     }
 }
