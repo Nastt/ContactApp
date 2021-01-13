@@ -8,7 +8,6 @@ namespace ContactApp.UnitTests
     [TestFixture]
     public class ProjectManagerTests
     {
-
         public Project PrepareProject()
         {
             var sourceProject = new Project();
@@ -76,13 +75,12 @@ namespace ContactApp.UnitTests
 
             //Act
             ProjectManager.SaveToFile(sourceProject, testDataFolder, actualFileName);
-            
             var isFileExist = File.Exists(actualFileName);
             NUnit.Framework.Assert.AreEqual(true, isFileExist);
 
             //Assert
             var actualFileContent = File.ReadAllText(actualFileName);
-            var expectedFileContent = File.ReadAllText(expectedFileName);
+            var expectedFileContent = File.ReadAllText(expectedFileName);                         
             NUnit.Framework.Assert.AreEqual(expectedFileContent, actualFileContent);
         }
 

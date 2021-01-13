@@ -7,7 +7,7 @@ namespace ContactApp.UnitTests
     class PhoneNumberTests
     {
         [Test]
-        public void PhoneNumber_CorrectlyPhoneNumber_ReturnPhoneNumber()
+        public void PhoneNumber_CorrectPhoneNumber_ReturnSamePhoneNumber()
         {
             //Setup
             var sourceNumber = 79528074444;
@@ -24,7 +24,7 @@ namespace ContactApp.UnitTests
         }
 
         [Test]
-        public void Birthday_TooSmallBirthday_ThrowsException()
+        public void PhoneNumber_InсorrectPhoneNumber_ThrowsException()
         {
             //Setup
             var sourceNumber = 123456789123456789;

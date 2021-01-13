@@ -7,7 +7,7 @@ namespace ContactApp.UnitTests
     public class ContactTests
     {
         [Test]
-        public void Name_GoodName_ReturnsSameName()
+        public void Name_CorrectName_ReturnsSameName()
         {
             //Setup
             var contact = new Contact();
@@ -39,7 +39,7 @@ namespace ContactApp.UnitTests
         }
 
         [Test]
-        public void Name_EmprtyName_DefaultName()
+        public void Name_EmprtyName_ThrowsException()
         {
             //Setup
             var contact = new Contact();
@@ -49,6 +49,7 @@ namespace ContactApp.UnitTests
             NUnit.Framework.Assert.Throws<ArgumentException>
                 (
                 () =>
+
                 {
                     //Act
                     contact.Name = sourceName;
@@ -76,10 +77,9 @@ namespace ContactApp.UnitTests
         }
 
         [Test]
-        public void Surname_GoodName_ReturnsSameSurname()
+        public void Surname_CorrectSurname_ReturnsSameSurname()
         {
             //Setup
-
             var contact = new Contact();
             var sourceSurname = "Contact1";
             var expectedSurname = sourceSurname;
@@ -109,7 +109,7 @@ namespace ContactApp.UnitTests
         }
 
         [Test]
-        public void Surname_EmprtyName_DefaultSurname()
+        public void Surname_EmprtyName_ThrowsException()
         {
             //Setup
             var contact = new Contact();
@@ -119,6 +119,7 @@ namespace ContactApp.UnitTests
             NUnit.Framework.Assert.Throws<ArgumentException>
                 (
                 () =>
+
                 {
                     //Act
                     contact.Surname = sourceSurname;
@@ -127,7 +128,7 @@ namespace ContactApp.UnitTests
         }
 
         [Test]
-        public void Surname_TooLongName_ThrowsException()
+        public void Surname_TooLongSurname_ThrowsException()
         {
             //Setup
             var contact = new Contact();
@@ -146,7 +147,7 @@ namespace ContactApp.UnitTests
         }
 
         [Test]
-        public void Email_GoodEmail_ReturnSameEmail()
+        public void Email_CorrectEmail_ReturnSameEmail()
         {
             //Setup
             var contact = new Contact();
@@ -181,7 +182,7 @@ namespace ContactApp.UnitTests
         }
 
         [Test]
-        public void IdVk_GoodIdVk_ReturnSameIdVk()
+        public void IdVk_CorrectIdVk_ReturnSameIdVk()
         {
             //Setup
             var contact = new Contact();
@@ -216,7 +217,7 @@ namespace ContactApp.UnitTests
         }
 
         [Test]
-        public void Birthday_GoodBirthday_ReturnSameBirthday()
+        public void Birthday_CorrectBirthday_ReturnSameBirthday()
         {
             //Setup
             var contact = new Contact();
