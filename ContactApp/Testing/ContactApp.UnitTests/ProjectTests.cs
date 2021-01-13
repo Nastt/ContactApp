@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Reflection;
 using NUnit.Framework;
 
 namespace ContactApp.UnitTests
@@ -13,7 +7,7 @@ namespace ContactApp.UnitTests
     class ProjectTests
     {
         [Test]
-        public void Project_CreateProject_ReturnAdjustedProject()
+        public void Project_CreateProject_ReturnRegulatedProject()
         {
             //Setup
             var sourceNumber = 71234567891;

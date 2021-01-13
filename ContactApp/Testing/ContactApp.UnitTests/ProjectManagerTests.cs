@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Reflection;
 using NUnit.Framework;
@@ -13,10 +9,9 @@ namespace ContactApp.UnitTests
     public class ProjectManagerTests
     {
 
-        public Project SetUp()
+        public Project PrepareProject()
         {
             var sourceProject = new Project();
-
             var sourceNumber = 79528074444;
             var phoneNumber = new PhoneNumber
             {
@@ -32,6 +27,7 @@ namespace ContactApp.UnitTests
                 Email = "Anastas@mail.ru",
                 PhoneNumber = phoneNumber
             });
+
             sourceProject.Contacts.Add(new Contact()
             {
                 Name = "Полина",
@@ -68,7 +64,7 @@ namespace ContactApp.UnitTests
         public void SaveToFile_CorrectProject_FileSavedCorrectly()
         {
             //Setup
-            var sourceProject = SetUp();
+            var sourceProject = PrepareProject();
             var testDataFolder = TestDataFolder();
             var actualFileName = ActualFileName();
             var expectedFileName = ExpectedFilename();
@@ -94,7 +90,7 @@ namespace ContactApp.UnitTests
         public void SaveToFile_NoneExistingFolder_FileSaveCorrectly()
         {
             //Setup
-            var sourceProject = SetUp();
+            var sourceProject = PrepareProject();
             var testDataFolder = TestDataFolder();
             var actualFileName = ActualFileName();
             var actualFolder = testDataFolder + @"\TestNoneExistingFolder";
@@ -115,7 +111,7 @@ namespace ContactApp.UnitTests
         public void LoadFromFile_CorrectFile_FileLoadCorrectly()
         {
             //Setup
-            var expectedProject = SetUp();
+            var expectedProject = PrepareProject();
             var expectedFilename = ExpectedFilename();
 
             //Act
@@ -139,6 +135,7 @@ namespace ContactApp.UnitTests
             //Assert
             NUnit.Framework.Assert.IsEmpty(actualProject.Contacts);
         }
+
         public static void Assert(Contact contact1, Contact contact2)
         {
             NUnit.Framework.Assert.AreEqual(contact1.Name, contact2.Name);

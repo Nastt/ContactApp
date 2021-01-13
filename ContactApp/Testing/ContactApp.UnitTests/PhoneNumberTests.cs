@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Reflection;
 using NUnit.Framework;
 
 namespace ContactApp.UnitTests
@@ -13,7 +7,7 @@ namespace ContactApp.UnitTests
     class PhoneNumberTests
     {
         [Test]
-        public void PhoneNumber_CorreclyPhoneNumber_ReturnPhoneNumber()
+        public void PhoneNumber_CorrectlyPhoneNumber_ReturnPhoneNumber()
         {
             //Setup
             var sourceNumber = 79528074444;

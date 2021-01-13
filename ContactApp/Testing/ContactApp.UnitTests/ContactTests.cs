@@ -3,8 +3,6 @@ using NUnit.Framework;
 
 namespace ContactApp.UnitTests
 {
-    using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-
     [TestFixture]
     public class ContactTests
     {
@@ -14,11 +12,11 @@ namespace ContactApp.UnitTests
             //Setup
             var contact = new Contact();
             var sourceName = "Contact1";
-            var expectedName  = sourceName;
+            var expectedName = sourceName;
 
             //Act
             contact.Name = sourceName;
-            var actualName  = contact.Name;
+            var actualName = contact.Name;
 
             //Assert
             NUnit.Framework.Assert.AreEqual(expectedName, actualName);
@@ -70,11 +68,11 @@ namespace ContactApp.UnitTests
             (
                 () =>
 
-                { 
+                {
                     //Act
-                    contact.Name = sourceName; 
+                    contact.Name = sourceName;
                 }
-            );                          
+            );
         }
 
         [Test]
@@ -261,6 +259,7 @@ namespace ContactApp.UnitTests
             {
                 Number = sourceNumber
             };
+
             var expectedContact = new Contact
             {
                 Name = "Анастасия",
@@ -275,8 +274,9 @@ namespace ContactApp.UnitTests
             var actualContact = expectedContact.Clone() as Contact;
 
             //Assert
-            Assert(expectedContact, actualContact);            
+            Assert(expectedContact, actualContact);
         }
+
         public static void Assert(Contact contact1, Contact contact2)
         {
             NUnit.Framework.Assert.AreEqual(contact1.Name, contact2.Name);
