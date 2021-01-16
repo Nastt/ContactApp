@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ContactApp;
 
@@ -14,6 +8,15 @@ namespace ContactAppUI
     public partial class MainForm : Form
     {
         private Project _project;
+        /// Переменная для хранения всех названий заметок проекта.
+        /// </summary>
+        private List<Contact> _actualList = new List<Contact>();
+        /// <summary>
+        /// Переменная для хранения отсортированных названий заметок проекта.
+        /// </summary>
+        private List<Contact> _sortList = new List<Contact>();
+
+        private int maxLengthElement = 0;
         public MainForm()
         {
             InitializeComponent();
@@ -23,6 +26,16 @@ namespace ContactAppUI
             foreach (var contact in _project.Contacts)
             {
                 ContactlistBox.Items.Add(contact.Surname);
+            }
+
+            UpdateListBox();
+
+            if (_project.SelectedIndex > 0)
+                ContactlistBox.SelectedIndex = _project.SelectedIndex;
+            else
+            {
+                if (_project.Contacts.Count > 0)
+                    ContactlistBox.SelectedIndex = 0;
             }
         }
 
@@ -106,6 +119,54 @@ namespace ContactAppUI
             }
         }
 
+        private void UpdateListBox()
+        {
+            //Все отсортированные контакты проекта
+            _sortList = _project.SortContacts(_project.Contacts);
+            MaxLengthElement();
+
+            if (SortTextBox.Text.Length == 0)
+            {
+                 ContactlistBox.Items.Clear();
+                _actualList.Clear();
+                for (int i = 0; i < _sortList.Count; i++)
+                {
+                    _actualList.Add(_sortList[i]);
+                    ContactlistBox.Items.Add(_sortList[i].Surname);
+                }
+            }
+            else
+            {
+                 ContactlistBox.Items.Clear();
+                _actualList.Clear();
+                for (int i = 0; i < _sortList.Count; i++)
+                {                                  
+                        if ((String.Equals(SortTextBox.Text, _sortList[i].Surname.ToString().Substring(0, SortTextBox.Text.Length))) && SortTextBox.Text.Length <= maxLengthElement)
+                        {
+                            _actualList.Add(_sortList[i]);
+                            ContactlistBox.Items.Add(_sortList[i].Surname);
+                        }                                  
+                }
+            }
+        }
+
+        /// <summary>
+        /// Фиксирование выбранной заметки относительно текущей выбранной категории.
+        /// </summary>
+        private void LastSelectedContact()
+        {
+            _sortList = _project.SortContacts(_project.Contacts);
+
+            if (ContactlistBox.SelectedIndex >= 0)
+            {
+                _project.SelectedIndex = _sortList.IndexOf(_actualList[ContactlistBox.SelectedIndex]);
+            }
+            else
+            {
+                _project.SelectedIndex = -1;
+            }
+        }
+
         /// <summary>
         /// Метод удаления контакта
         /// </summary>
@@ -173,6 +234,32 @@ namespace ContactAppUI
         {
             EditContact();
         }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LastSelectedContact();
+        }
+
+       private void SortTextBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateListBox();
+            /*if (SortTextBox.Text.Length != 0)
+            {
+                SortTextBox.Text[0] = char.ToUpper(SortTextBox.Text[0]).ToString();
+            }*/
+        }
+
+        private void MaxLengthElement()
+        {
+            for (int i=0; i<_sortList.Count; i++)
+            {
+                if (_sortList[i].Surname.Length > maxLengthElement)
+                    maxLengthElement = _sortList[i].Surname.Length;               
+            }
+            if (_sortList.Count == 0)
+                maxLengthElement = 0;
+        }
+
     }
 }
 

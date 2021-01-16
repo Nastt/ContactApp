@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ContactApp
 {
@@ -15,6 +11,21 @@ namespace ContactApp
         /// <summary>
         /// Динамическая коллекция контактов проекта
         /// </summary>
-        public ObservableCollection<Contact> Contacts { get; set; } = new ObservableCollection<Contact>();
+        public List<Contact> Contacts { get; set; } = new List<Contact>();
+
+        /// <summary>
+        /// Индекс текущей заметки.
+        /// </summary>
+        public int SelectedIndex { get; set; }
+
+        /// <summary>
+        /// Сортировка списка заметок по дате изменения.
+        /// </summary>
+        public List<Contact> SortContacts(List<Contact> contact)
+        {
+            return contact.OrderByDescending(item => item.Surname).ToList();
+        }
     }
 }
+
+

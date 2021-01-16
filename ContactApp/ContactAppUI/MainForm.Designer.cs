@@ -58,6 +58,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.PhoneMaskBox = new System.Windows.Forms.MaskedTextBox();
+            this.SortLabel = new System.Windows.Forms.Label();
+            this.SortTextBox = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -331,6 +333,8 @@
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.SortTextBox);
+            this.panel2.Controls.Add(this.SortLabel);
             this.panel2.Controls.Add(this.PhoneMaskBox);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label2);
@@ -358,6 +362,23 @@
             this.PhoneMaskBox.Size = new System.Drawing.Size(398, 20);
             this.PhoneMaskBox.TabIndex = 18;
             // 
+            // SortLabel
+            // 
+            this.SortLabel.AutoSize = true;
+            this.SortLabel.Location = new System.Drawing.Point(144, 270);
+            this.SortLabel.Name = "SortLabel";
+            this.SortLabel.Size = new System.Drawing.Size(35, 13);
+            this.SortLabel.TabIndex = 19;
+            this.SortLabel.Text = "label8";
+            // 
+            // SortTextBox
+            // 
+            this.SortTextBox.Location = new System.Drawing.Point(195, 270);
+            this.SortTextBox.Name = "SortTextBox";
+            this.SortTextBox.Size = new System.Drawing.Size(73, 20);
+            this.SortTextBox.TabIndex = 20;
+            this.SortTextBox.TextChanged += new System.EventHandler(this.SortTextBox_TextChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -372,6 +393,7 @@
             this.MinimumSize = new System.Drawing.Size(765, 470);
             this.Name = "MainForm";
             this.Text = "ContactsApp";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -413,5 +435,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.MaskedTextBox PhoneMaskBox;
+        private System.Windows.Forms.TextBox SortTextBox;
+        private System.Windows.Forms.Label SortLabel;
     }
 }
