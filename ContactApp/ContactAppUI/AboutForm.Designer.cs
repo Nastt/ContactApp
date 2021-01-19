@@ -44,10 +44,10 @@
             this.emailLabel.AutoSize = true;
             this.emailLabel.Location = new System.Drawing.Point(119, 141);
             this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(176, 13);
+            this.emailLabel.Size = new System.Drawing.Size(150, 13);
             this.emailLabel.TabIndex = 0;
             this.emailLabel.TabStop = true;
-            this.emailLabel.Text = "MARKIHA.AHACTACIA@yandex.ru";
+            this.emailLabel.Text = "markina.anastacia@yandex.ru";
             this.emailLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // gitHubLabel
@@ -66,7 +66,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Marlett", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(12, 27);
+            this.label1.Location = new System.Drawing.Point(12, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 21);
             this.label1.TabIndex = 2;
@@ -85,7 +85,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 97);
+            this.label3.Location = new System.Drawing.Point(13, 93);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(134, 13);
             this.label3.TabIndex = 4;
@@ -117,7 +117,6 @@
             this.label6.Size = new System.Drawing.Size(133, 13);
             this.label6.TabIndex = 7;
             this.label6.Text = "2020 Anastasia Markina ©";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // AboutForm
             // 

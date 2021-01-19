@@ -14,16 +14,16 @@ namespace ContactApp
         public List<Contact> Contacts { get; set; } = new List<Contact>();
 
         /// <summary>
-        /// Индекс текущей заметки.
+        /// Индекс текущего контакта.
         /// </summary>
         public int SelectedIndex { get; set; }
 
         /// <summary>
-        /// Сортировка списка заметок по дате изменения.
+        /// Сортировка списка контактов по алфавиту.
         /// </summary>
         public List<Contact> SortContacts(List<Contact> contact)
         {
-            return contact.OrderByDescending(item => item.Surname).ToList();
+            return contact.OrderBy(item => item.Surname).ToList();
         }
     }
 }

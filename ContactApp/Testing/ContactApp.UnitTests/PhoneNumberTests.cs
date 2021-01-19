@@ -10,58 +10,54 @@ namespace ContactApp.UnitTests
         public void PhoneNumber_CorrectPhoneNumber_ReturnSamePhoneNumber()
         {
             //Setup
-            var sourceNumber = 79528074444;
-            var phoneNumber = new PhoneNumber
-            {
-                Number = sourceNumber
-            };
+            var sourcePhoneNumber = 79528074444;
+            var phoneNumber = new PhoneNumber();
+            var expectedPhoneNumber = sourcePhoneNumber;
 
             //Act
-            var actualyPhoneNumber = phoneNumber;
+            phoneNumber.Number = sourcePhoneNumber;
+            var actualPhoneNumber = phoneNumber.Number;
 
             //Assert
-            NUnit.Framework.Assert.AreEqual(actualyPhoneNumber.Number, sourceNumber);
+            Assert.AreEqual(expectedPhoneNumber, actualPhoneNumber);
+        }
+
+        [Test]
+        public void PhoneNumber_InсorrectPhoneNumber_ThrowsException()
+        {
+            //Setup
+            var phoneNumber = new PhoneNumber();
+            var sourceNumber = 12346564789;
+
+            //Assert
+            Assert.Throws<ArgumentException>
+            (
+                () =>
+
+                {
+                    //Act
+                    phoneNumber.Number = sourceNumber;
+                }
+            );
         }
 
         [Test]
         public void PhoneNumber_TooLongPhoneNumber_ThrowsException()
         {
             //Setup
+            var phoneNumber = new PhoneNumber();
             var sourceNumber = 723456789123456789;
 
             //Assert
-            NUnit.Framework.Assert.Throws<ArgumentException>
+            Assert.Throws<ArgumentException>
             (
                 () =>
 
                 {
                     //Act
-                    var phoneNumber = new PhoneNumber
-                    {
-                        Number = sourceNumber
-                    };
+                    phoneNumber.Number = sourceNumber;
                 }
             );
-        }
-
-        public void PhoneNumber_InсorrectPhoneNumber_ThrowsException()
-        {
-            //Setup
-            var sourceNumber = 12346564789;
-
-            //Assert
-            NUnit.Framework.Assert.Throws<ArgumentException>
-            (
-                () =>
-
-                {
-                    //Act
-                    var phoneNumber = new PhoneNumber
-                    {
-                        Number = sourceNumber
-                    };
-                }
-            );
-        }
+        }       
     }
 }

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ContactApp;
 
@@ -17,7 +11,7 @@ namespace ContactAppUI
         /// Времененное хранение контакта
         /// </summary>
         private Contact _contact = new Contact();
-        
+
         public Contact Contact
         {
             get
@@ -77,8 +71,8 @@ namespace ContactAppUI
         /// </summary>
         private void PhoneBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(Char.IsDigit(e.KeyChar)) && 
-                (e.KeyChar != (char)Keys.Back) && 
+            if (!(Char.IsDigit(e.KeyChar)) &&
+                (e.KeyChar != (char)Keys.Back) &&
                 (e.KeyChar != (char)Keys.Delete))
             {
                 e.Handled = true;
@@ -98,8 +92,8 @@ namespace ContactAppUI
         /// </summary>
         private void vkBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(Char.IsDigit(e.KeyChar)) && 
-                (e.KeyChar != (char)Keys.Back) && 
+            if (!(Char.IsDigit(e.KeyChar)) &&
+                (e.KeyChar != (char)Keys.Back) &&
                 (e.KeyChar != (char)Keys.Delete) && (!(Char.IsLetter(e.KeyChar))))
             {
                 e.Handled = true;
@@ -115,7 +109,7 @@ namespace ContactAppUI
         }
 
         /// <summary>
-        /// Измененние текстового поля vkBox при ошибке вводе
+        /// Изменение текстового поля vkBox при ошибке вводе
         /// </summary>
         private void vkBox_TextChanged(object sender, EventArgs e)
         {
@@ -130,7 +124,7 @@ namespace ContactAppUI
         }
 
         /// <summary>
-        /// Измененние текстового поля SurnameBox при ошибке вводе
+        /// Изменение текстового поля SurnameBox при ошибке вводе
         /// </summary>
         private void SurnameBox_TextChanged(object sender, EventArgs e)
         {
@@ -145,7 +139,7 @@ namespace ContactAppUI
         }
 
         /// <summary>
-        /// Измененние текстового поля NameBox при ошибке вводе
+        /// Изменение текстового поля NameBox при ошибке вводе
         /// </summary>
         private void NameBox_TextChanged(object sender, EventArgs e)
         {
@@ -160,7 +154,7 @@ namespace ContactAppUI
         }
 
         /// <summary>
-        /// Измененние текстового поля PhoneBox при ошибке вводе
+        /// Изменение текстового поля PhoneBox при ошибке вводе
         /// </summary>
         private void PhoneBox_TextChanged(object sender, EventArgs e)
         {
@@ -182,7 +176,7 @@ namespace ContactAppUI
         }
 
         /// <summary>
-        /// Измененние текстового поля EmailBox при ошибке вводе
+        /// Изменение текстового поля EmailBox при ошибке вводе
         /// </summary>
         private void EmailBox_TextChanged(object sender, EventArgs e)
         {
@@ -215,6 +209,5 @@ namespace ContactAppUI
         {
             this.Close();
         }
-
     }
 }

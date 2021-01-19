@@ -7,7 +7,6 @@ namespace ContactApp
     /// </summary>
     public class Contact : ICloneable
     {
-        
         /// <summary>
         /// Фамилия контакта
         /// </summary>
@@ -53,7 +52,7 @@ namespace ContactApp
                 if (value.Length == 0)
                 {
                     throw new ArgumentException("Surname isn't written");
-                } 
+                }
 
                 if (value.Length < 50)
                 {
@@ -63,7 +62,7 @@ namespace ContactApp
                 {
                     throw new ArgumentException("Surname cannot be longer than 50 digits");
                 }
-                
+
             }
         }
 
@@ -91,7 +90,7 @@ namespace ContactApp
                 else
                 {
                     throw new ArgumentException("Name cannot be longer than 50 digits");
-                }                
+                }
             }
         }
 
@@ -136,7 +135,7 @@ namespace ContactApp
                 }
                 else
                 {
-                    throw new ArgumentException("ID_vk cannot be longer than 15 digits");
+                    throw new ArgumentException("IDvk cannot be longer than 15 digits");
                 }
             }
         }

@@ -39,7 +39,6 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.ContactlistBox = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -56,13 +55,18 @@
             this.RemoveButton = new System.Windows.Forms.Button();
             this.EditButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.PhoneMaskBox = new System.Windows.Forms.MaskedTextBox();
-            this.SortLabel = new System.Windows.Forms.Label();
             this.SortTextBox = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ContactsBirthdayLabel = new System.Windows.Forms.Label();
+            this.PhoneMaskBox = new System.Windows.Forms.MaskedTextBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -88,7 +92,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -141,26 +145,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 16);
+            this.label1.Location = new System.Drawing.Point(13, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Find:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox1.Location = new System.Drawing.Point(49, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(214, 20);
-            this.textBox1.TabIndex = 3;
             // 
             // ContactlistBox
             // 
             this.ContactlistBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.ContactlistBox.FormattingEnabled = true;
-            this.ContactlistBox.Location = new System.Drawing.Point(16, 40);
+            this.ContactlistBox.Location = new System.Drawing.Point(16, 42);
             this.ContactlistBox.Name = "ContactlistBox";
             this.ContactlistBox.ScrollAlwaysVisible = true;
             this.ContactlistBox.Size = new System.Drawing.Size(247, 290);
@@ -170,7 +166,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 36);
+            this.label2.Location = new System.Drawing.Point(18, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 5;
@@ -179,7 +175,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 62);
+            this.label3.Location = new System.Drawing.Point(32, 45);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 6;
@@ -188,7 +184,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 91);
+            this.label4.Location = new System.Drawing.Point(22, 71);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 7;
@@ -197,7 +193,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 114);
+            this.label5.Location = new System.Drawing.Point(29, 97);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 13);
             this.label5.TabIndex = 8;
@@ -206,7 +202,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 140);
+            this.label6.Location = new System.Drawing.Point(32, 123);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 9;
@@ -215,7 +211,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 166);
+            this.label7.Location = new System.Drawing.Point(25, 149);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(45, 13);
             this.label7.TabIndex = 10;
@@ -225,46 +221,46 @@
             // 
             this.SurnameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SurnameBox.Location = new System.Drawing.Point(58, 33);
+            this.SurnameBox.Location = new System.Drawing.Point(76, 16);
             this.SurnameBox.Name = "SurnameBox";
             this.SurnameBox.ReadOnly = true;
-            this.SurnameBox.Size = new System.Drawing.Size(398, 20);
+            this.SurnameBox.Size = new System.Drawing.Size(380, 20);
             this.SurnameBox.TabIndex = 11;
             // 
             // NameBox
             // 
             this.NameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NameBox.Location = new System.Drawing.Point(58, 59);
+            this.NameBox.Location = new System.Drawing.Point(76, 42);
             this.NameBox.Name = "NameBox";
             this.NameBox.ReadOnly = true;
-            this.NameBox.Size = new System.Drawing.Size(398, 20);
+            this.NameBox.Size = new System.Drawing.Size(380, 20);
             this.NameBox.TabIndex = 12;
             // 
             // EmailBox
             // 
             this.EmailBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.EmailBox.Location = new System.Drawing.Point(58, 137);
+            this.EmailBox.Location = new System.Drawing.Point(76, 120);
             this.EmailBox.Name = "EmailBox";
             this.EmailBox.ReadOnly = true;
-            this.EmailBox.Size = new System.Drawing.Size(398, 20);
+            this.EmailBox.Size = new System.Drawing.Size(380, 20);
             this.EmailBox.TabIndex = 15;
             // 
             // vkBox
             // 
             this.vkBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.vkBox.Location = new System.Drawing.Point(58, 163);
+            this.vkBox.Location = new System.Drawing.Point(76, 146);
             this.vkBox.Name = "vkBox";
             this.vkBox.ReadOnly = true;
-            this.vkBox.Size = new System.Drawing.Size(398, 20);
+            this.vkBox.Size = new System.Drawing.Size(380, 20);
             this.vkBox.TabIndex = 16;
             // 
             // BirthdayTimePicker
             // 
             this.BirthdayTimePicker.Enabled = false;
-            this.BirthdayTimePicker.Location = new System.Drawing.Point(58, 85);
+            this.BirthdayTimePicker.Location = new System.Drawing.Point(76, 68);
             this.BirthdayTimePicker.Name = "BirthdayTimePicker";
             this.BirthdayTimePicker.Size = new System.Drawing.Size(140, 20);
             this.BirthdayTimePicker.TabIndex = 17;
@@ -277,7 +273,7 @@
             this.AddButton.FlatAppearance.BorderSize = 0;
             this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddButton.Image = ((System.Drawing.Image)(resources.GetObject("AddButton.Image")));
-            this.AddButton.Location = new System.Drawing.Point(3, 344);
+            this.AddButton.Location = new System.Drawing.Point(3, 352);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(45, 45);
             this.AddButton.TabIndex = 18;
@@ -291,7 +287,7 @@
             this.RemoveButton.FlatAppearance.BorderSize = 0;
             this.RemoveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RemoveButton.Image = ((System.Drawing.Image)(resources.GetObject("RemoveButton.Image")));
-            this.RemoveButton.Location = new System.Drawing.Point(105, 344);
+            this.RemoveButton.Location = new System.Drawing.Point(105, 352);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(45, 45);
             this.RemoveButton.TabIndex = 19;
@@ -305,7 +301,7 @@
             this.EditButton.FlatAppearance.BorderSize = 0;
             this.EditButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EditButton.Image = ((System.Drawing.Image)(resources.GetObject("EditButton.Image")));
-            this.EditButton.Location = new System.Drawing.Point(54, 344);
+            this.EditButton.Location = new System.Drawing.Point(54, 352);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(45, 45);
             this.EditButton.TabIndex = 20;
@@ -317,24 +313,31 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.SortTextBox);
             this.panel1.Controls.Add(this.AddButton);
             this.panel1.Controls.Add(this.RemoveButton);
             this.panel1.Controls.Add(this.ContactlistBox);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.EditButton);
-            this.panel1.Controls.Add(this.textBox1);
             this.panel1.Location = new System.Drawing.Point(9, 27);
             this.panel1.MinimumSize = new System.Drawing.Size(265, 390);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(266, 392);
+            this.panel1.Size = new System.Drawing.Size(266, 400);
             this.panel1.TabIndex = 21;
+            // 
+            // SortTextBox
+            // 
+            this.SortTextBox.Location = new System.Drawing.Point(49, 16);
+            this.SortTextBox.Name = "SortTextBox";
+            this.SortTextBox.Size = new System.Drawing.Size(214, 20);
+            this.SortTextBox.TabIndex = 20;
+            this.SortTextBox.TextChanged += new System.EventHandler(this.SortTextBox_TextChanged);
             // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.SortTextBox);
-            this.panel2.Controls.Add(this.SortLabel);
+            this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.PhoneMaskBox);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label2);
@@ -350,34 +353,64 @@
             this.panel2.Location = new System.Drawing.Point(281, 27);
             this.panel2.MinimumSize = new System.Drawing.Size(460, 390);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(460, 392);
+            this.panel2.Size = new System.Drawing.Size(460, 400);
             this.panel2.TabIndex = 22;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel3.Controls.Add(this.label8);
+            this.panel3.Controls.Add(this.pictureBox1);
+            this.panel3.Controls.Add(this.ContactsBirthdayLabel);
+            this.panel3.Location = new System.Drawing.Point(6, 274);
+            this.panel3.Margin = new System.Windows.Forms.Padding(5, 5, 0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(450, 123);
+            this.panel3.TabIndex = 20;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(117, 26);
+            this.label8.Margin = new System.Windows.Forms.Padding(3);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(108, 13);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Today is the birthday:";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(5, 10);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(104, 99);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // ContactsBirthdayLabel
+            // 
+            this.ContactsBirthdayLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ContactsBirthdayLabel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ContactsBirthdayLabel.Location = new System.Drawing.Point(117, 45);
+            this.ContactsBirthdayLabel.Margin = new System.Windows.Forms.Padding(3);
+            this.ContactsBirthdayLabel.Name = "ContactsBirthdayLabel";
+            this.ContactsBirthdayLabel.Size = new System.Drawing.Size(330, 64);
+            this.ContactsBirthdayLabel.TabIndex = 19;
+            this.ContactsBirthdayLabel.Text = "No one";
             // 
             // PhoneMaskBox
             // 
-            this.PhoneMaskBox.Location = new System.Drawing.Point(58, 111);
+            this.PhoneMaskBox.Location = new System.Drawing.Point(76, 94);
             this.PhoneMaskBox.Mask = "+0(000) 000-00-00";
             this.PhoneMaskBox.Name = "PhoneMaskBox";
             this.PhoneMaskBox.ReadOnly = true;
-            this.PhoneMaskBox.Size = new System.Drawing.Size(398, 20);
+            this.PhoneMaskBox.Size = new System.Drawing.Size(380, 20);
             this.PhoneMaskBox.TabIndex = 18;
-            // 
-            // SortLabel
-            // 
-            this.SortLabel.AutoSize = true;
-            this.SortLabel.Location = new System.Drawing.Point(144, 270);
-            this.SortLabel.Name = "SortLabel";
-            this.SortLabel.Size = new System.Drawing.Size(35, 13);
-            this.SortLabel.TabIndex = 19;
-            this.SortLabel.Text = "label8";
-            // 
-            // SortTextBox
-            // 
-            this.SortTextBox.Location = new System.Drawing.Point(195, 270);
-            this.SortTextBox.Name = "SortTextBox";
-            this.SortTextBox.Size = new System.Drawing.Size(73, 20);
-            this.SortTextBox.TabIndex = 20;
-            this.SortTextBox.TextChanged += new System.EventHandler(this.SortTextBox_TextChanged);
             // 
             // MainForm
             // 
@@ -400,6 +433,9 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -416,7 +452,6 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ListBox ContactlistBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -436,6 +471,9 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.MaskedTextBox PhoneMaskBox;
         private System.Windows.Forms.TextBox SortTextBox;
-        private System.Windows.Forms.Label SortLabel;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label ContactsBirthdayLabel;
     }
 }

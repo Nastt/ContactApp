@@ -32,7 +32,7 @@ namespace ContactApp.UnitTests
             sourceProject.Contacts.Add(contact);
 
             //Assert
-            NUnit.Framework.Assert.IsNotNull(sourceProject);
+            Assert.IsNotNull(sourceProject);
         }
     }
 }

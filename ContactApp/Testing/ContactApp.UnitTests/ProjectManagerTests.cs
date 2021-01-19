@@ -80,7 +80,7 @@ namespace ContactApp.UnitTests
 
             //Assert
             var actualFileContent = File.ReadAllText(actualFileName);
-            var expectedFileContent = File.ReadAllText(expectedFileName);                         
+            var expectedFileContent = File.ReadAllText(expectedFileName);
             NUnit.Framework.Assert.AreEqual(expectedFileContent, actualFileContent);
         }
 

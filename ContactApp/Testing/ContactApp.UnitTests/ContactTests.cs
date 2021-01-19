@@ -19,7 +19,7 @@ namespace ContactApp.UnitTests
             var actualName = contact.Name;
 
             //Assert
-            NUnit.Framework.Assert.AreEqual(expectedName, actualName);
+            Assert.AreEqual(expectedName, actualName);
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace ContactApp.UnitTests
             var actualName = contact.Name;
 
             //Assert
-            NUnit.Framework.Assert.AreEqual(expectedName, actualName);
+            Assert.AreEqual(expectedName, actualName);
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace ContactApp.UnitTests
             var sourceName = "";
 
             //Assert
-            NUnit.Framework.Assert.Throws<ArgumentException>
+            Assert.Throws<ArgumentException>
                 (
                 () =>
 
@@ -65,7 +65,7 @@ namespace ContactApp.UnitTests
             var sourceName = "Contact Contact Contact Contact Contact Contact Contact Contact";
 
             //Assert
-            NUnit.Framework.Assert.Throws<ArgumentException>
+            Assert.Throws<ArgumentException>
             (
                 () =>
 
@@ -89,7 +89,7 @@ namespace ContactApp.UnitTests
             var actualSurname = contact.Surname;
 
             //Assert
-            NUnit.Framework.Assert.AreEqual(expectedSurname, actualSurname);
+            Assert.AreEqual(expectedSurname, actualSurname);
         }
 
         [Test]
@@ -105,7 +105,7 @@ namespace ContactApp.UnitTests
             var actualName = contact.Surname;
 
             //Assert
-            NUnit.Framework.Assert.AreEqual(expectedSurname, actualName);
+            Assert.AreEqual(expectedSurname, actualName);
         }
 
         [Test]
@@ -116,8 +116,8 @@ namespace ContactApp.UnitTests
             var sourceSurname = "";
 
             //Assert
-            NUnit.Framework.Assert.Throws<ArgumentException>
-                (
+            Assert.Throws<ArgumentException>
+            (
                 () =>
 
                 {
@@ -135,7 +135,7 @@ namespace ContactApp.UnitTests
             var sourceSurname = "Contact Contact Contact Contact Contact Contact Contact Contact";
 
             //Assert
-            NUnit.Framework.Assert.Throws<ArgumentException>
+            Assert.Throws<ArgumentException>
             (
                 () =>
 
@@ -159,7 +159,7 @@ namespace ContactApp.UnitTests
             var actualEmail = contact.Email;
 
             //Assert
-            NUnit.Framework.Assert.AreEqual(expectedEmail, actualEmail);
+            Assert.AreEqual(expectedEmail, actualEmail);
         }
 
         [Test]
@@ -170,7 +170,7 @@ namespace ContactApp.UnitTests
             var sourceEmail = "Email Email Email Email Email Email Email Email Email Email Email Email";
 
             //Assert
-            NUnit.Framework.Assert.Throws<ArgumentException>
+            Assert.Throws<ArgumentException>
             (
                 () =>
 
@@ -194,7 +194,7 @@ namespace ContactApp.UnitTests
             var actualIdVk = contact.IdVk;
 
             //Assert
-            NUnit.Framework.Assert.AreEqual(expectedIdVk, actualIdVk);
+            Assert.AreEqual(expectedIdVk, actualIdVk);
         }
 
         [Test]
@@ -205,7 +205,7 @@ namespace ContactApp.UnitTests
             var sourceIdVk = "IdVk IdVk IdVk IdVk IdVk IdVk IdVk";
 
             //Assert
-            NUnit.Framework.Assert.Throws<ArgumentException>
+            Assert.Throws<ArgumentException>
             (
                 () =>
 
@@ -229,7 +229,7 @@ namespace ContactApp.UnitTests
             var actualBirthday = contact.Birthday;
 
             //Assert
-            NUnit.Framework.Assert.AreEqual(expectedBirthday, actualBirthday);
+            Assert.AreEqual(expectedBirthday, actualBirthday);
         }
 
         [Test]
@@ -240,7 +240,7 @@ namespace ContactApp.UnitTests
             var sourceBirthday = new DateTime(1800, 1, 1);
 
             //Assert
-            NUnit.Framework.Assert.Throws<ArgumentException>
+            Assert.Throws<ArgumentException>
             (
                 () =>
 
