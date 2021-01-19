@@ -24,6 +24,7 @@ namespace ContactAppUI
         public MainForm()
         {
             InitializeComponent();
+            BirthdayTimePicker.Value = DateTime.Now;
             _project = ProjectManager.LoadFromFile(ProjectManager.PathToFile);
             foreach (var contact in _project.Contacts)
             {
@@ -56,6 +57,7 @@ namespace ContactAppUI
                 _actualList.Add(Contact);
                 UpdateListBox();
                 ContactlistBox.SelectedIndex = 0;
+                ContactsBirthdays();
             }
         }
 
@@ -82,6 +84,7 @@ namespace ContactAppUI
                     _project.Contacts.Insert(projectEditIndex, updateContact.Contact);
                     UpdateListBox();
                     ContactlistBox.SelectedIndex = 0;
+                    ContactsBirthdays();
                 }
 
                 ProjectManager.SaveToFile(_project, ProjectManager.PathToFolder, ProjectManager.PathToFile);
@@ -119,6 +122,7 @@ namespace ContactAppUI
                 {
                     ListBoxNotEmpty();
                 }
+                ContactsBirthdays();
             }
         }
 

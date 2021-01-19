@@ -38,6 +38,7 @@ namespace ContactAppUI
         {
             InitializeComponent();
             BirthdayTimePicker.MaxDate = DateTime.Now;
+            BirthdayTimePicker.Value = BirthdayTimePicker.MaxDate;
         }
 
         /// <summary>
