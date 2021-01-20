@@ -63,6 +63,10 @@
     <Error Condition="!Exists('..\packages\Tools.InnoSetup.6.1.2\build\Tools.InnoSetup.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Tools.InnoSetup.6.1.2\build\Tools.InnoSetup.props'))" />
   </Target>
   <PropertyGroup>
-    <PreBuildEvent>"$(SolutionDir)packages\Tools.InnoSetup.6.1.2\tools\ISCC.exe" "$(SolutionDir)Installer\InstallScripts\Installer.iss"</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)packages\Tools.InnoSetup.6.1.2\tools\ISCC.exe" "$(SolutionDir)Installer\InstallScripts\Installer.iss"</PostBuildEvent>
   </PropertyGroup>
 </Project>
