@@ -81,7 +81,7 @@ namespace ContactAppUI
 
             if (PhoneBox.Text.Length == 1)
             {
-                if (!(Char.IsDigit(e.KeyChar)))
+                if (!Char.IsDigit(e.KeyChar))
                 {
                     e.Handled = true;
                 }
@@ -93,16 +93,16 @@ namespace ContactAppUI
         /// </summary>
         private void vkBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(Char.IsDigit(e.KeyChar)) &&
+            if (!Char.IsDigit(e.KeyChar) &&
                 (e.KeyChar != (char)Keys.Back) &&
-                (e.KeyChar != (char)Keys.Delete) && (!(Char.IsLetter(e.KeyChar))))
+                (e.KeyChar != (char)Keys.Delete) && (!Char.IsLetter(e.KeyChar)))
             {
                 e.Handled = true;
             }
 
             if (vkBox.Text.Length == 2)
             {
-                if (!(Char.IsDigit(e.KeyChar)) && (!(Char.IsLetter(e.KeyChar))))
+                if (!Char.IsDigit(e.KeyChar) && (!Char.IsLetter(e.KeyChar)))
                 {
                     e.Handled = true;
                 }
@@ -114,9 +114,16 @@ namespace ContactAppUI
         /// </summary>
         private void vkBox_TextChanged(object sender, EventArgs e)
         {
-            if (vkBox.Text.Length > 15)
+            if (vkBox.Text.Length > 0)
             {
-                vkBox.BackColor = Color.Salmon;
+                if (vkBox.Text.Length > 17)
+                {
+                    vkBox.BackColor = Color.Salmon;
+                }
+                else
+                {
+                    vkBox.BackColor = Color.White;
+                }
             }
             else
             {
@@ -129,9 +136,16 @@ namespace ContactAppUI
         /// </summary>
         private void SurnameBox_TextChanged(object sender, EventArgs e)
         {
-            if (SurnameBox.Text.Length > 50)
+            if (SurnameBox.Text.Length > 0)
             {
-                SurnameBox.BackColor = Color.Salmon;
+                if (SurnameBox.Text.Length > 50)
+                {
+                    SurnameBox.BackColor = Color.Salmon;
+                }
+                else
+                {
+                    SurnameBox.BackColor = Color.White;
+                }
             }
             else
             {
@@ -144,9 +158,16 @@ namespace ContactAppUI
         /// </summary>
         private void NameBox_TextChanged(object sender, EventArgs e)
         {
-            if (NameBox.Text.Length > 50)
+            if (NameBox.Text.Length > 0)
             {
-                NameBox.BackColor = Color.Salmon;
+                if (NameBox.Text.Length > 50)
+                {
+                    NameBox.BackColor = Color.Salmon;
+                }
+                else
+                {
+                    NameBox.BackColor = Color.White;
+                }
             }
             else
             {

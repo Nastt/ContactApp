@@ -401,7 +401,6 @@
             this.ContactsBirthdayLabel.Name = "ContactsBirthdayLabel";
             this.ContactsBirthdayLabel.Size = new System.Drawing.Size(330, 64);
             this.ContactsBirthdayLabel.TabIndex = 19;
-            this.ContactsBirthdayLabel.Text = "No one";
             // 
             // PhoneMaskBox
             // 

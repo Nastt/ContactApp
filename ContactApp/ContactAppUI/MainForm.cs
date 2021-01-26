@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using ContactApp;
-using System.Linq;
-using System.Data;
 
 namespace ContactAppUI
 {
@@ -13,12 +11,11 @@ namespace ContactAppUI
         /// Переменная для хранения всех контактов проекта.
         /// </summary>
         private Project _project;
-        private List<Contact> _actualList = new List<Contact>();
 
         /// <summary>
-        /// Переменная для хранения отсортированных контактов проекта.
+        /// Контакты, отображаемые в текущее время на ListBox.
         /// </summary>
-        private List<Contact> _sortList = new List<Contact>();
+        private List<Contact> _displayedContacts = new List<Contact>();
         private int maxLengthElement = 0;
 
         public MainForm()
@@ -32,6 +29,7 @@ namespace ContactAppUI
             }
             ContactsBirthdays();
             UpdateListBox();
+            SortListBox();
             if (_project.SelectedIndex > 0)
                 ContactlistBox.SelectedIndex = _project.SelectedIndex;
             else
@@ -54,8 +52,9 @@ namespace ContactAppUI
                 _project.Contacts.Add(Contact);
                 ContactlistBox.Items.Add(Contact.Surname);
                 ProjectManager.SaveToFile(_project, ProjectManager.PathToFolder, ProjectManager.PathToFile);
-                _actualList.Add(Contact);
+                _displayedContacts.Add(Contact);
                 UpdateListBox();
+                SortListBox();
                 ContactlistBox.SelectedIndex = 0;
                 ContactsBirthdays();
             }
@@ -74,7 +73,7 @@ namespace ContactAppUI
             else
             {
                 var selectIndex = ContactlistBox.SelectedIndex;
-                var selectContact = _actualList[selectIndex];
+                var selectContact = _displayedContacts[selectIndex];
                 var updateContact = new ContactForm { Contact = selectContact };
                 var dialogResult = updateContact.ShowDialog();
                 if (dialogResult == DialogResult.OK)
@@ -83,11 +82,18 @@ namespace ContactAppUI
                     _project.Contacts.RemoveAt(projectEditIndex);
                     _project.Contacts.Insert(projectEditIndex, updateContact.Contact);
                     UpdateListBox();
-                    ContactlistBox.SelectedIndex = 0;
-                    ContactsBirthdays();
+                    SortListBox();                   
                 }
-
                 ProjectManager.SaveToFile(_project, ProjectManager.PathToFolder, ProjectManager.PathToFile);
+                ContactsBirthdays();
+                if (_displayedContacts.Count == 0)
+                {
+                    SortTextBox.Text = updateContact.Contact.Surname;
+                }
+                else
+                {
+                    ContactlistBox.SelectedIndex = 0;
+                }
             }
         }
 
@@ -103,7 +109,7 @@ namespace ContactAppUI
             else
             {
                 var selectIndex = ContactlistBox.SelectedIndex;
-                var selectContact = _actualList[selectIndex];
+                var selectContact = _displayedContacts[selectIndex];
                 var dialogResult = MessageBox.Show(
                    $"Do you really want to remove contact?",
                    "Confirmation", MessageBoxButtons.OKCancel);
@@ -112,22 +118,24 @@ namespace ContactAppUI
                     var projectEditIndex = _project.Contacts.IndexOf(selectContact);
                     _project.Contacts.RemoveAt(projectEditIndex);
                     UpdateListBox();
+                    SortListBox();
                 }
                 ProjectManager.SaveToFile(_project, ProjectManager.PathToFolder, ProjectManager.PathToFile);
+
                 if (ContactlistBox.Items.Count > 0)
                 {
                     ContactlistBox.SelectedIndex = 0;
                 }
                 else
                 {
-                    ListBoxNotEmpty();
+                    ListBoxCountNull();
                 }
                 ContactsBirthdays();
             }
         }
 
         //Отображение данных на правой панели по умолчанию.  
-        private void ListBoxNotEmpty()
+        private void ListBoxCountNull()
         {
             SurnameBox.Text = "";
             NameBox.Text = "";
@@ -141,7 +149,7 @@ namespace ContactAppUI
         {
             if (ContactlistBox.SelectedIndex >= 0)
             {
-                var selectedContact = _actualList[ContactlistBox.SelectedIndex];
+                var selectedContact = _displayedContacts[ContactlistBox.SelectedIndex];
                 SurnameBox.Text = selectedContact.Surname;
                 NameBox.Text = selectedContact.Name;
                 PhoneMaskBox.Text = selectedContact.PhoneNumber.Number.ToString();
@@ -152,39 +160,22 @@ namespace ContactAppUI
             }
             else
             {
-                ListBoxNotEmpty();
+                ListBoxCountNull();
             }
         }
 
-        private void UpdateListBox()
+        /// <summary>
+        /// Метод, сортирующий контакты по алфавиту
+        /// </summary>
+        private void SortListBox()
         {
-            //Все отсортированные контакты проекта
-            _sortList = _project.SortContacts(_project.Contacts);
-            MaxLengthElement();
-            if (SortTextBox.Text.Length == 0)
+            _displayedContacts = _project.SortContacts(_displayedContacts);
+
+            ContactlistBox.Items.Clear();
+
+            foreach (var contact in _displayedContacts)
             {
-                ContactlistBox.Items.Clear();
-                _actualList.Clear();
-                for (int i = 0; i < _sortList.Count; i++)
-                {
-                    _actualList.Add(_sortList[i]);
-                    ContactlistBox.Items.Add(_sortList[i].Surname);
-                }
-            }
-            else
-            {
-                ContactlistBox.Items.Clear();
-                _actualList.Clear();
-                for (int i = 0; i < _sortList.Count; i++)
-                {
-                    if (SortTextBox.Text.Length <= maxLengthElement &&
-                        SortTextBox.Text.Length <= _sortList[i].Surname.Length &&
-                        Equals(SortTextBox.Text, _sortList[i].Surname.Substring(0, SortTextBox.Text.Length)))
-                    {
-                        _actualList.Add(_sortList[i]);
-                        ContactlistBox.Items.Add(_sortList[i].Surname);
-                    }
-                }
+                ContactlistBox.Items.Add(contact.Surname);
             }
         }
 
@@ -193,17 +184,50 @@ namespace ContactAppUI
         /// </summary>
         private void ContactsBirthdays()
         {
-            var surnames = _project.Contacts.Where(contact =>
-                contact.Birthday == DateTime.Today).Select(contact => contact.Surname);
-            ContactsBirthdayLabel.Text = string.Join(", ", surnames);
+            ContactsBirthdayLabel.Text = "";
+            var _sortContacts = _project.SortContacts(_project.Contacts);
+            for (int i = 0; i < _sortContacts.Count; i++)
+            {
+                if (_sortContacts[i].Birthday.Day == DateTime.Today.Day &&
+                   _sortContacts[i].Birthday.Month == DateTime.Today.Month)
+                    ContactsBirthdayLabel.Text += _sortContacts[i].Surname + " ";
+            }
+            if (ContactsBirthdayLabel.Text == "")
+            {
+                ContactsBirthdayLabel.Text = "No one";
+            }
+
+        }
+
+        private void UpdateListBox()
+        {
+            MaxLengthElement();
+            if (SortTextBox.Text.Length == 0)
+            {
+                _displayedContacts.Clear();
+                _displayedContacts = _project.Contacts;
+            }
+            else
+            {
+                _displayedContacts.Clear();
+                for (int i = 0; i < _project.Contacts.Count; i++)
+                {
+                    if (SortTextBox.Text.Length <= maxLengthElement &&
+                        SortTextBox.Text.Length <= _project.Contacts[i].Surname.Length &&
+                        Equals(SortTextBox.Text, _project.Contacts[i].Surname.Substring(0, SortTextBox.Text.Length)))
+                    {
+                        _displayedContacts.Add(_project.Contacts[i]);
+                    }
+                }
+            }
         }
 
         private void LastSelectedContact()
         {
-            _sortList = _project.SortContacts(_project.Contacts);
+            var _sortContacts = _project.SortContacts(_project.Contacts);
             if (ContactlistBox.SelectedIndex >= 0)
             {
-                _project.SelectedIndex = _sortList.IndexOf(_actualList[ContactlistBox.SelectedIndex]);
+                _project.SelectedIndex = _sortContacts.IndexOf(_displayedContacts[ContactlistBox.SelectedIndex]);
             }
             else
             {
@@ -220,6 +244,7 @@ namespace ContactAppUI
         private void SortTextBox_TextChanged(object sender, EventArgs e)
         {
             UpdateListBox();
+            SortListBox();
             if (SortTextBox.Text.Length > 0)
             {
                 SortTextBox.Text = char.ToUpper(SortTextBox.Text[0]) + SortTextBox.Text.Substring(1).ToLower();
@@ -230,12 +255,12 @@ namespace ContactAppUI
 
         private void MaxLengthElement()
         {
-            for (int i = 0; i < _sortList.Count; i++)
+            for (int i = 0; i < _project.Contacts.Count; i++)
             {
-                if (_sortList[i].Surname.Length > maxLengthElement)
-                    maxLengthElement = _sortList[i].Surname.Length;
+                if (_project.Contacts[i].Surname.Length > maxLengthElement)
+                    maxLengthElement = _project.Contacts[i].Surname.Length;
             }
-            if (_sortList.Count == 0)
+            if (_project.Contacts.Count == 0)
                 maxLengthElement = 0;
         }
 

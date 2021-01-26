@@ -54,7 +54,7 @@ namespace ContactApp
                     throw new ArgumentException("Surname isn't written");
                 }
 
-                if (value.Length < 50)
+                if (value.Length <= 50)
                 {
                     _surname = char.ToUpper(value[0]).ToString() + value.Substring(1);
                 }
@@ -83,7 +83,7 @@ namespace ContactApp
                     throw new ArgumentException("Name isn't written");
                 }
 
-                if (value.Length < 50)
+                if (value.Length <= 50)
                 {
                     _name = char.ToUpper(value[0]).ToString() + value.Substring(1);
                 }
@@ -106,7 +106,7 @@ namespace ContactApp
             }
             set
             {
-                if (value.Length < 50)
+                if (value.Length <= 50)
                 {
                     _email = value;
                 }
@@ -129,7 +129,7 @@ namespace ContactApp
             }
             set
             {
-                if ((value.Length < 15))
+                if (value.Length <= 17)
                 {
                     _idVk = value;
                 }
